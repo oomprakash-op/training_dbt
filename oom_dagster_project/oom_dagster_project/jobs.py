@@ -7,37 +7,38 @@ dbt = DbtCliResource(
 )
 
 @op
-def run_staging():
+def run_src():
     dbt.cli([
         "build",
         "--select",
-        "staging"
+        "src"
     ]).wait()
 
 @op
-def run_dimensions_facts():
+def run_dim_fct():
     dbt.cli([
         "build",
         "--select",
-        "dimensions facts"
+        "dim",
+        "fct"
     ]).wait()
 
 @op
-def run_marts():
+def run_mv():
     dbt.cli([
         "build",
         "--select",
-        "marts"
+        "mv"
     ]).wait()
 
 @job(resource_defs={"dbt": dbt})
 def staging_job():
-    run_staging()
+    run_src()
 
 @job(resource_defs={"dbt": dbt})
 def dimensions_facts_job():
-    run_dimensions_facts()
+    run_dim_fct()
 
 @job(resource_defs={"dbt": dbt})
 def marts_job():
-    run_marts()
+    run_mv()

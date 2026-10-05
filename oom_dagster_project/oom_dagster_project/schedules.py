@@ -1,15 +1,37 @@
-"""
-To add a daily schedule that materializes your dbt assets, uncomment the following lines.
-"""
-from dagster_dbt import build_schedule_from_dbt_selection
+from dagster import schedule
 
-from .assets import training1_dbt_assets
+from .jobs import (
+    staging_job,
+    dimensions_facts_job,
+    marts_job,
+)
+
+@schedule(
+    job=staging_job,
+    cron_schedule="0 8 * * *",
+    execution_timezone="Asia/Kolkata",
+)
+def staging_daily_schedule(_context):
+    return {}
+
+@schedule(
+    job=dimensions_facts_job,
+    cron_schedule="0 9 * * *",
+    execution_timezone="Asia/Kolkata",
+)
+def dimensions_facts_daily_schedule(_context):
+    return {}
+
+@schedule(
+    job=marts_job,
+    cron_schedule="0 10 * * *",
+    execution_timezone="Asia/Kolkata",
+)
+def marts_daily_schedule(_context):
+    return {}
 
 schedules = [
-#     build_schedule_from_dbt_selection(
-#         [training1_dbt_assets],
-#         job_name="materialize_dbt_models",
-#         cron_schedule="0 0 * * *",
-#         dbt_select="fqn:*",
-#     ),
+    staging_daily_schedule,
+    dimensions_facts_daily_schedule,
+    marts_daily_schedule,
 ]
