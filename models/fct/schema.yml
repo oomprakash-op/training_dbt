@@ -1,0 +1,94 @@
+version: 2
+
+models:
+  - name: fct_hosts
+    description: "Incremental host model using merge strategy."
+
+    columns:
+      - name: host_id
+        description: "Unique identifier for a host."
+        tests:
+          - not_null
+          - unique
+
+      - name: created_at
+        description: "Host creation timestamp."
+        tests:
+          - not_null
+
+      - name: updated_at
+        description: "Host update timestamp."
+        tests:
+          - not_null
+
+  - name: fct_hosts_updated
+    description: "Incremental host model using insert_overwrite strategy."
+
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+
+      - name: created_at
+        tests:
+          - not_null
+
+  - name: fct_hosts_micro
+    description: "Incremental host model using microbatch strategy."
+
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+
+      - name: created_at
+        tests:
+          - not_null
+
+  - name: fct_schema_change_1
+    description: "Incremental model demonstrating on_schema_change = ignore."
+
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+
+      - name: created_at
+        tests:
+          - not_null
+
+  - name: fct_schema_change_2
+    description: "Incremental model demonstrating on_schema_change = fail."
+
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+
+      - name: created_at
+        tests:
+          - not_null
+
+  - name: fct_schema_change_3
+    description: "Incremental model demonstrating on_schema_change = append_new_columns."
+
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+
+      - name: created_at
+        tests:
+          - not_null
+
+  - name: fct_schema_change_4
+    description: "Incremental model demonstrating on_schema_change = sync_all_columns."
+
+    columns:
+      - name: host_id
+        tests:
+          - not_null
+
+      - name: created_at
+        tests:
+          - not_null

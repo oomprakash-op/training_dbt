@@ -1,0 +1,48 @@
+sources:
+
+  - name: airbnb
+    database: racko-master-project-505113
+    schema: airbnb_raw
+
+    tables:
+
+      - name: hosts
+        identifier: raw_hosts
+        columns:
+
+          - name: id
+            description: "This is column_id"
+
+          - name: name
+            description: "This is column name"
+
+        config:
+          loaded_at_field: created_at
+          freshness:
+            warn_after:  {count: 1, period: hour}
+            error_after: {count: 24, period: hour}
+
+
+
+      - name: reviews
+        identifier: raw_reviews
+        columns:
+
+          - name: listing_id
+            description: "This is Listing_id"
+
+          - name: date
+            description: "This is the date"
+
+      
+            
+
+      - name: listings
+        identifier: raw_listings
+        columns:
+
+          - name: id
+            description: "This is Listing_id"
+
+          - name: listing_url
+            description: "This is the listing url"

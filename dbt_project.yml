@@ -1,0 +1,56 @@
+name: 'training1'
+version: '1.0.0'
+
+profile: 'training1'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  training1:
+
+    src:
+      +materialized: view
+
+    dim:
+      +materialized: table
+
+    fct:
+      +materialized: incremental
+      +incremental_strategy: merge
+
+    mv:
+      +materialized: materialized_view
+      +enable_refresh: true
+      +refresh_interval_minutes: 30
+
+seeds:
+  training1:
+    airbnb_room_type_reference_seed:
+      +column_types:
+        room_type: STRING
+        room_category: STRING
+        room_description: STRING
+        property_segment: STRING
+        standard_room_type: STRING
+        is_active: BOOLEAN
+        display_order: FLOAT64
+        reference_code: INT64
+
+vars:
+  new_date: '2011-01-01'
+  my_new_var: "{{ env_var('AIRBNB_START_DATE', '2011-01-01') }}"
+
+snapshots:
+  training1:
+    +schema: tred_train_1
+    +hard_deletes: ignore
+    +enabled: true
