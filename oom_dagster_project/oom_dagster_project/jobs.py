@@ -1,44 +1,25 @@
-from dagster import job, op
-from dagster_dbt import DbtCliResource
+from dagster import define_asset_job
+from dagster_dbt import build_dbt_asset_selection
 
-dbt = DbtCliResource(
-    project_dir=r"C:\Users\Administrator\Desktop\Training_workspace\training1",
-    profiles_dir=r"C:\Users\Administrator\.dbt",
+from .assets import training1_dbt_assets
+
+staging_job = define_asset_job(
+    name="staging_job",
+    selection=build_dbt_asset_selection(
+        [training1_dbt_assets], dbt_select="src"
+    ),
 )
 
-@op
-def run_src():
-    dbt.cli([
-        "build",
-        "--select",
-        "src"
-    ]).wait()
+dimensions_facts_job = define_asset_job(
+    name="dimensions_facts_job",
+    selection=build_dbt_asset_selection(
+        [training1_dbt_assets], dbt_select="dim fct"
+    ),
+)
 
-@op
-def run_dim_fct():
-    dbt.cli([
-        "build",
-        "--select",
-        "dim",
-        "fct"
-    ]).wait()
-
-@op
-def run_mv():
-    dbt.cli([
-        "build",
-        "--select",
-        "mv"
-    ]).wait()
-
-@job(resource_defs={"dbt": dbt})
-def staging_job():
-    run_src()
-
-@job(resource_defs={"dbt": dbt})
-def dimensions_facts_job():
-    run_dim_fct()
-
-@job(resource_defs={"dbt": dbt})
-def marts_job():
-    run_mv()
+marts_job = define_asset_job(
+    name="marts_job",
+    selection=build_dbt_asset_selection(
+        [training1_dbt_assets], dbt_select="mv"
+    ),
+)

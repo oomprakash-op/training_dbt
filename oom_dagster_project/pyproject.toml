@@ -1,18 +1,14 @@
 [project]
 name = "oom_dagster_project"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+description = "Dagster orchestration for the training1 dbt project"
 requires-python = ">=3.10,<3.15"
 dependencies = [
     "dagster",
     "dagster-cloud",
     "dagster-dbt",
-    "dbt-core<1.12",
-    "dbt-bigquery<1.12",
-    "dbt-bigquery<1.12",
-    "dbt-bigquery<1.12",
-    "dbt-bigquery<1.12",
+    "dbt-core>=1.12,<1.13",
+    "dbt-bigquery>=1.12,<1.13",
 ]
 
 [project.optional-dependencies]

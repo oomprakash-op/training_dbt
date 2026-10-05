@@ -1,7 +1,6 @@
 {% snapshot snap_hosts6 %}
 {{
     config(
-        target_schema='tred_train_1',
         unique_key='host_id',
         strategy='check',
         check_cols='all',

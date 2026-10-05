@@ -12,18 +12,19 @@
 with cte_2 as (
 
     select *
-    from {{ source('airbnb','listings') }}
+    from {{ ref('src_listings') }}
 
 )
 
 select
-    id as listing_id,
-    name as listing_name,
+    listing_id,
+    listing_name,
     listing_url,
     room_type,
     minimum_nights,
     host_id,
-    price as price_str,
+    price_str,
     created_at,
     updated_at
 from cte_2
+where minimum_nights > 0

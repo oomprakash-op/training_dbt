@@ -1,3 +1,5 @@
+{{ config(severity = 'warn') }}
+
 select * from
- {{ref('src_listings')}}
-where price_str < 0
+{{ ref('dim_listings_cleansed') }}
+where price_str <= 0

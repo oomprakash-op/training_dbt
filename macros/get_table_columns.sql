@@ -6,6 +6,10 @@
         identifier=model_name
     ) %}
  
+    {% if relation is none %}
+        {{ exceptions.raise_compiler_error("Relation " ~ target.schema ~ "." ~ model_name ~ " does not exist") }}
+    {% endif %}
+
     {% set columns = adapter.get_columns_in_relation(relation) %}
  
     {% for column in columns %}

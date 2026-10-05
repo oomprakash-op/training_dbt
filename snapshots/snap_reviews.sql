@@ -4,7 +4,6 @@
 
     config(
 
-        target_schema='training1',
 
         unique_key='listing_id',
 

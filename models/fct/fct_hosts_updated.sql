@@ -20,5 +20,6 @@ from
 select * from cte_7
 where 1=1
 {% if is_incremental() %}
-    and created_at > (select MAX(created_at) from {{this}})
+    -- insert_overwrite replaces whole partitions, so reload every row of the latest year onward
+    and created_at >= (select timestamp_trunc(MAX(created_at), YEAR) from {{this}})
 {% endif  %}

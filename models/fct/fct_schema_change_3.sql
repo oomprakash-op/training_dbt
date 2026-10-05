@@ -16,5 +16,5 @@ from
 select * from cte_7
 where 1=1
 {% if is_incremental() %}
-    and created_at > (select MAX(created_at) from {{this}})
+    and updated_at > (select MAX(updated_at) from {{this}})
 {% endif  %}

@@ -1,4 +1,4 @@
-{% macro postive_values(model, column_name) %}
+{% macro positive_values(model, column_name) %}
 
     select
     *

@@ -5,7 +5,7 @@
 ] %}
 select
     {% for cols in columns %}
-        {{col}} {% if not loop.last %}, {% endif %}
+        {{cols}} {% if not loop.last %}, {% endif %}
     {% endfor %}
 from
     {{ref('src_hosts_old')}}

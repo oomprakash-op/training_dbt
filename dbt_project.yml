@@ -18,7 +18,7 @@ models:
   training1:
 
     src:
-      +materialized: view
+      +materialized: table
 
     dim:
       +materialized: table
@@ -51,6 +51,5 @@ vars:
 
 snapshots:
   training1:
-    +schema: tred_train_1
     +hard_deletes: ignore
     +enabled: true

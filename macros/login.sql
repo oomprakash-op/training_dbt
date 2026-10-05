@@ -7,4 +7,3 @@
     {# {{ log("today is wednesday.") }} #}
 
 {% endmacro %}
-`

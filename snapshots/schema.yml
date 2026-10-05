@@ -4,7 +4,7 @@ snapshots:
 
   - name: snap_hosts
 
-    description: "This is snapshot for the src_hosts"
+    description: "This is snapshot for the src_hosts_old"
 
     config:
       unique_key: 'host_id'
@@ -14,7 +14,7 @@ snapshots:
 
   - name: snap_hosts2
 
-    description: "This is snapshot2 for the src_hosts"
+    description: "This is snapshot2 for the src_hosts_old"
 
     config:
       unique_key: 'host_id'
@@ -24,7 +24,7 @@ snapshots:
 
   - name: snap_hosts3
 
-    description: "This is snapshot3 for the src_hosts"
+    description: "This is snapshot3 for the src_hosts_old"
 
     config:
       unique_key: 'host_id'
@@ -34,7 +34,7 @@ snapshots:
 
   - name: snap_hosts4
 
-    description: "This is snapshot4 for the src_hosts"
+    description: "This is snapshot4 for the src_hosts_old"
 
     config:
       unique_key: 'host_id'
@@ -45,7 +45,7 @@ snapshots:
 
   - name: snap_hosts5
 
-    description: "This is snapshot5 for the src_hosts"
+    description: "This is snapshot5 for the src_hosts_old"
 
     config:
       unique_key: 'host_id'
@@ -56,7 +56,7 @@ snapshots:
 
   - name: snap_hosts6
 
-    description: "This is snapshot6 for the src_hosts"
+    description: "This is snapshot6 for the src_hosts_old"
 
     config:
       unique_key: 'host_id'
@@ -73,13 +73,12 @@ snapshots:
 
   - name: snap_hosts7
 
-    description: "This is snapshot7 for the src_hosts"
+    description: "This is snapshot7 for the src_hosts_old"
 
     config:
       unique_key: 'host_id'
       strategy: 'check'
       check_cols: 'all'
-      schema: RANDOMDS
       dbt_valid_to_current: "timestamp('9999-12-31 00:00:00 UTC')"
       hard_deletes: 'new_record'
 

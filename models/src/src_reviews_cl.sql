@@ -18,7 +18,7 @@ with cte_3 as
 select 
 *
 from
-airbnb_raw_data.raw_reviews
+{{ source('airbnb', 'reviews') }}
 )
  
 select

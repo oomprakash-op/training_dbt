@@ -2,13 +2,9 @@ from pathlib import Path
 
 from dagster_dbt import DbtProject
 
-DBT_PROJECT_DIR = Path(
-    r"C:\Users\Administrator\Desktop\Training_workspace\training1"
-)
+DBT_PROJECT_DIR = Path(__file__).resolve().parents[2]
 
-DBT_PROFILES_DIR = Path(
-    r"C:\Users\Administrator\.dbt"
-)
+DBT_PROFILES_DIR = Path.home() / ".dbt"
 
 training1_project = DbtProject(
     project_dir=DBT_PROJECT_DIR,
